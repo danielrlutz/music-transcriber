@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mt3-web-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mt3-web-ui
+    restart: unless-stopped
+    # Use host network mode so the container can access the host's localhost directly
+    # This allows it to route to the MT3 container running on localhost:5000
+    # It also automatically binds the web UI to 0.0.0.0:3000 on the host
+    network_mode: "host"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MT3_API_URL=http://localhost:5000/transcribe-anything
