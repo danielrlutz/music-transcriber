@@ -1,9 +1,7 @@
 # MT3 Web UI Container 🎵
 
 A fully containerized, network-accessible graphical front-end and proxy backend for the MT3 (Multi-Task Multitrack Music Transcription) machine learning engine.
-
-![MT3 Transcriber](frontend/public/favicon.svg) <!-- Replace with actual screenshot when available -->
-
+![MT3 Transcriber](frontend/public/favicon.svg)
 ## Features
 
 - **Beautiful Drag-and-Drop Interface:** Built with Vue 3 and TailwindCSS, featuring a smooth state-machine visualizer for uploads and transcriptions.
