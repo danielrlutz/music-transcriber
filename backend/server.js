@@ -27,7 +27,7 @@ app.use('/api', apiRoutes);
 
 // Fallback route for Single Page Application (SPA) routing
 // Ensures Vue Router handles deep links correctly if implemented
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
