@@ -7,7 +7,7 @@ Write-Host "==============================================="
 $ipV4 = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notmatch 'Loopback' -and $_.InterfaceAlias -notmatch 'vEthernet' }).IPAddress | Select-Object -First 1
 
 Write-Host "Your Local LAN IP is: $ipV4"
-Write-Host "Other devices on your network can access the web app at: http://$($ipV4):3000"
+Write-Host "Other devices on your network can access the web app at: http://$($ipV4):5678"
 Write-Host "-----------------------------------------------"
 Write-Host "Building and starting the Docker container..."
 

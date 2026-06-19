@@ -34,7 +34,7 @@ We provide a convenient launch script for Windows users:
 This script will:
 1. Identify your local IPv4 LAN address.
 2. Build and launch the container via `docker-compose`.
-3. Print the network URL (e.g., `http://192.168.1.50:3000`) so you can access the UI from your phone or other laptops.
+3. Print the network URL (e.g., `http://192.168.1.50:5678`) so you can access the UI from your phone or other laptops.
 
 ### Manual Docker Setup
 
@@ -48,13 +48,13 @@ docker-compose up --build -d
 docker-compose logs -f
 ```
 
-Visit `http://localhost:3000` (or your machine's LAN IP) to use the interface.
+Visit `http://localhost:5678` (or your machine's LAN IP) to use the interface.
 
 ## Configuration
 
 You can override environment variables in the `docker-compose.yml`:
 
-- `PORT`: The port the web UI binds to (default: `3000`).
+- `PORT`: The port the web UI binds to (default: `5678`).
 - `MT3_API_URL`: The downstream MT3 API endpoint (default: `http://localhost:5000/transcribe-anything`).
 
 ## Development

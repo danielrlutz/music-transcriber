@@ -11,5 +11,5 @@ services:
     network_mode: "host"
     environment:
       - NODE_ENV=production
-      - PORT=3000
+      - PORT=5678
       - MT3_API_URL=http://localhost:5000/transcribe-anything

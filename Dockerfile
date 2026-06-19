@@ -35,10 +35,10 @@ COPY --from=frontend-builder /app/frontend/dist ./public
 
 # Force the server to bind to all network interfaces
 ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PORT=5678
 # By default, we point to the MT3 backend container. This can be overridden.
 ENV MT3_API_URL=http://localhost:5000/transcribe-anything
 
-EXPOSE 3000
+EXPOSE 5678
 
 CMD ["node", "server.js"]
