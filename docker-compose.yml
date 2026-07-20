@@ -13,3 +13,20 @@ services:
       - NODE_ENV=production
       - PORT=5678
       - MT3_API_URL=http://localhost:5000/transcribe-anything
+
+  mt3-engine:
+    build:
+      context: ./ml-engine
+      dockerfile: Dockerfile
+    container_name: mt3-engine
+    restart: unless-stopped
+    # Use host network to easily expose port 5000 directly to localhost
+    network_mode: "host"
+    # Pass through all GPUs to the container
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

@@ -16,12 +16,12 @@ This project acts as a bridge. It intercepts local network uploads, processes th
 
 1. **Frontend:** Vue 3 (Composition API), Vite, TailwindCSS.
 2. **Backend Proxy:** Node.js, Express, Multer, Fluent-FFmpeg, Axios.
-3. **Upstream Target:** By default, it looks for the MT3 container running on `http://localhost:5000/transcribe-anything`.
+3. **ML Engine:** Python, FastAPI, JAX/TensorFlow, Google MT3.
 
 ## Prerequisites
 
 - [Docker](https://www.docker.com/) and Docker Compose installed.
-- An instance of the MT3 API running locally (defaults to `localhost:5000`).
+- **NVIDIA Container Toolkit** installed on your host if you plan to use the GPU for the ML Engine (highly recommended).
 
 ## Getting Started (Quickstart)
 

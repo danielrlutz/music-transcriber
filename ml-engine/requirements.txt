@@ -1,0 +1,13 @@
+fastapi==0.103.1
+uvicorn==0.23.2
+pydantic==2.3.0
+nest-asyncio==1.5.8
+python-multipart==0.0.6
+# Standard ML stack for MT3
+jax[cuda11_pip]==0.4.14 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+flax
+tensorflow==2.13.0
+# MT3 and its audio processing dependencies
+librosa
+note_seq
+git+https://github.com/magenta/mt3.git
