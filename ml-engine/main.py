@@ -7,9 +7,8 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import note_seq
 
-# Ensure we can run asyncio in Jupyter/Uvicorn environments if needed
-import nest_asyncio
-nest_asyncio.apply()
+# nest_asyncio is incompatible with uvicorn's uvloop and is not needed in Docker
+# Removed to prevent startup crash
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
