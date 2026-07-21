@@ -23,7 +23,8 @@ RUN pip install -r requirements.txt
 # Install gsutil, wget and download the MT3 model checkpoint
 RUN pip install gsutil
 RUN apt-get update && apt-get install -y wget
-RUN gsutil -q -m cp -r gs://mt3/checkpoints/mt3 /app/checkpoints/mt3
+RUN mkdir -p /app/checkpoints
+RUN gsutil -q -m cp -r gs://mt3/checkpoints/mt3 /app/checkpoints/
 
 # Download gin configs
 RUN mkdir -p /app/gin
