@@ -20,6 +20,16 @@ COPY requirements.txt .
 RUN python3 -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+# Install gsutil, wget and download the MT3 model checkpoint
+RUN pip install gsutil
+RUN apt-get update && apt-get install -y wget
+RUN gsutil -q -m cp -r gs://mt3/checkpoints/mt3 /app/checkpoints/mt3
+
+# Download gin configs
+RUN mkdir -p /app/gin
+RUN wget https://raw.githubusercontent.com/magenta/mt3/main/mt3/gin/model.gin -O /app/gin/model.gin
+RUN wget https://raw.githubusercontent.com/magenta/mt3/main/mt3/gin/mt3.gin -O /app/gin/mt3.gin
+
 # Copy the API server code
 COPY main.py .
 
