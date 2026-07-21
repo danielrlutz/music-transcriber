@@ -1,13 +1,11 @@
-# Use NVIDIA CUDA base image to enable GPU access for JAX and TensorFlow
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+# Use Python 3.11 slim image (JAX will install its own CUDA wheels)
+FROM python:3.11-slim
 
 # Prevent interactive prompts during apt-get
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    python3.10 \
-    python3-pip \
     git \
     libsndfile1 \
     && rm -rf /var/lib/apt/lists/*

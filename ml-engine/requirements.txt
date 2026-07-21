@@ -5,7 +5,7 @@ nest-asyncio==1.5.8
 python-multipart==0.0.6
 # Standard ML stack for MT3
 jax[cuda11_pip]==0.4.14 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-flax==0.7.2
+flax
 tensorflow==2.13.0
 # MT3 and its audio processing dependencies
 librosa
