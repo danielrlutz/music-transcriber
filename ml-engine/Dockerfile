@@ -37,5 +37,5 @@ COPY main.py .
 # Expose port 5000 for the Node.js proxy to connect to
 EXPOSE 5000
 
-# Start the FastAPI server using Uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
+# Start the FastAPI server using Uvicorn with standard asyncio (required for nest_asyncio and MT3)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000", "--loop", "asyncio"]
