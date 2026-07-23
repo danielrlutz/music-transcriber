@@ -10,3 +10,4 @@ tensorflow
 librosa
 note_seq
 git+https://github.com/magenta/mt3.git
+nest-asyncio

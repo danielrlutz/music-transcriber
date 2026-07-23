@@ -16,6 +16,10 @@ import note_seq
 import seqio
 import t5
 import t5x
+import nest_asyncio
+
+# Apply nest_asyncio to allow asyncio.run() within the FastAPI event loop
+nest_asyncio.apply()
 
 from mt3 import metrics_utils
 from mt3 import models
@@ -293,4 +297,5 @@ async def transcribe(request: TranscriptionRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+    # Force asyncio loop because nest_asyncio is incompatible with uvloop
+    uvicorn.run(app, host="0.0.0.0", port=5000, loop="asyncio")
