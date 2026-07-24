@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     git \
     libsndfile1 \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up working directory
@@ -20,16 +21,7 @@ COPY requirements.txt .
 RUN python3 -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Install gsutil, wget and download the MT3 model checkpoint
-RUN pip install gsutil
-RUN apt-get update && apt-get install -y wget
-RUN mkdir -p /app/checkpoints
-RUN gsutil -q -m cp -r gs://mt3/checkpoints/mt3 /app/checkpoints/
-
-# Download gin configs
-RUN mkdir -p /app/gin
-RUN wget https://raw.githubusercontent.com/magenta/mt3/main/mt3/gin/model.gin -O /app/gin/model.gin
-RUN wget https://raw.githubusercontent.com/magenta/mt3/main/mt3/gin/mt3.gin -O /app/gin/mt3.gin
+# No need for MT3 gsutil download anymore, demucs downloads on the fly (or basic pitch)
 
 # Copy the API server code
 COPY main.py .
@@ -37,5 +29,5 @@ COPY main.py .
 # Expose port 5000 for the Node.js proxy to connect to
 EXPOSE 5000
 
-# Start the FastAPI server using Uvicorn with standard asyncio (required for nest_asyncio and MT3)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000", "--loop", "asyncio"]
+# Start the FastAPI server using Uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]

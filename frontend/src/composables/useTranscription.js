@@ -69,11 +69,15 @@ export function useTranscription() {
         let errorText = 'Unknown error'
         try {
           const errData = await response.json()
-          errorText = errData.error || errData.details || await response.text()
+          if (errData.details) {
+            errorText = `${errData.error || 'Error'}: ${errData.details}`
+          } else {
+            errorText = errData.error || await response.text()
+          }
         } catch {
           errorText = await response.text()
         }
-        throw new Error(`Server error: ${response.status} - ${errorText}`)
+        throw new Error(errorText)
       }
 
       progress.value = 100

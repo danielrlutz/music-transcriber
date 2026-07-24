@@ -32,8 +32,21 @@ class Mt3Service {
             console.log('[Mt3Service] Transcription successful. Binary MIDI received.');
             return response.data;
         } catch (error) {
-            console.error('[Mt3Service] Transcription API error:', error.message || error);
-            throw new Error(`MT3 API failed: ${error.message || String(error)}`);
+            let backendErrorMessage = error.message;
+            if (error.response && error.response.data) {
+                try {
+                    // response.data is an arraybuffer because we requested it
+                    const text = Buffer.from(error.response.data).toString('utf-8');
+                    const json = JSON.parse(text);
+                    if (json.detail) {
+                        backendErrorMessage = json.detail;
+                    }
+                } catch (e) {
+                    // Fallback to default message
+                }
+            }
+            console.error('[Mt3Service] Transcription API error:', backendErrorMessage);
+            throw new Error(`Backend Error: ${backendErrorMessage}`);
         }
     }
 }

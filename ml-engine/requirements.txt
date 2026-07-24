@@ -2,12 +2,9 @@ fastapi==0.103.1
 uvicorn==0.23.2
 pydantic==2.3.0
 python-multipart==0.0.6
-# Standard ML stack for MT3
-jax[cuda12]
-flax
-tensorflow
-# MT3 and its audio processing dependencies
+
+# Audio Processing & Transcription
 librosa
-note_seq
-git+https://github.com/magenta/mt3.git
-nest-asyncio
+demucs
+basic-pitch
+pretty_midi
